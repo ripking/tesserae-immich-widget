@@ -1,0 +1,102 @@
+{
+  "tesserae_compat": "1.x",
+  "name": "Picture, Immich (Smart Crop)",
+  "version": "0.1.0",
+  "license": "MIT",
+  "kind": "widget",
+  "description": "Full-bleed Immich photos cropped to fit the frame around their subject: faces from Immich's face detection first, otherwise the most detailed region. Photos whose faces can't fit are letterboxed on a blurred copy (or skipped). Uses the Picture, Immich widget's saved connections.",
+  "icon": "ph-images-square",
+  "supports": {
+    "sizes": [
+      "sm",
+      "md",
+      "lg"
+    ]
+  },
+  "requires": [
+    "network:*",
+    "settings:plugin/picture_immich"
+  ],
+  "cell_options": [
+    {
+      "name": "library_id",
+      "type": "select",
+      "label": "Library",
+      "default": "",
+      "choices_from": "libraries"
+    },
+    {
+      "name": "mode",
+      "type": "select",
+      "label": "Mode",
+      "default": "random_album",
+      "choices": [
+        {
+          "value": "random_album",
+          "label": "Random from album"
+        },
+        {
+          "value": "random",
+          "label": "Random from library"
+        }
+      ]
+    },
+    {
+      "name": "album_id",
+      "type": "select",
+      "label": "Album (random from album)",
+      "default": "",
+      "choices_from": "albums"
+    },
+    {
+      "name": "fallback",
+      "type": "select",
+      "label": "When faces don't fit the crop",
+      "default": "blur",
+      "choices": [
+        {
+          "value": "blur",
+          "label": "Letterbox on blurred copy"
+        },
+        {
+          "value": "skip",
+          "label": "Skip to another photo"
+        },
+        {
+          "value": "crop",
+          "label": "Crop around the largest face"
+        }
+      ]
+    },
+    {
+      "name": "orientation",
+      "type": "select",
+      "label": "Orientation",
+      "default": "any",
+      "choices": [
+        {
+          "value": "any",
+          "label": "Any photo"
+        },
+        {
+          "value": "match",
+          "label": "Prefer photos matching the frame"
+        }
+      ]
+    },
+    {
+      "name": "show_caption",
+      "type": "boolean",
+      "label": "Show date / place caption",
+      "default": false
+    }
+  ],
+  "render": {
+    "dither": "floyd-steinberg",
+    "full_bleed": true
+  },
+  "data_schema": {
+    "fields": [],
+    "sample": {}
+  }
+}
